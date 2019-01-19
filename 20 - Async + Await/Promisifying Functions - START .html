@@ -7,7 +7,33 @@
 
 <body>
   <script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('position:', position);
+    }, function(error) {
+      console.error(error);
+    })
 
+    // function getCurrentPosition() {
+    //   return new Promise((resolve, reject) => {
+    //     navigator.geolocation.getCurrentPosition(resolve, reject);
+    //   })
+    // }
+
+    function getCurrentPosition() {
+      return new Promise(navigator.geolocation.getCurrentPosition.bind(navigator.geolocation));
+    }
+
+    async function go() {
+      document.body.innerHTML = '<p>Loading...</p>';
+      try {
+        const pos = await getCurrentPosition();
+        document.body.innerHTML = `<p>Position: <pre>${JSON.stringify(pos)}</pre></p>`;
+      } catch(error) {
+        document.body.innerHTML = `<p>Failed: ${error.message}</p> <p><pre>${JSON.stringify(error)}</pre></p>`;
+      }
+    }
+
+    go();
   </script>
 </body>
 

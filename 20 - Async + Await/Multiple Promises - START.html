@@ -10,9 +10,26 @@
     async function go() {
       const p1 = fetch('https://api.github.com/users/wesbos');
       const p2 = fetch('https://api.github.com/users/stolinski');
+      const [res1, res2] = await Promise.all([p1, p2].map(p => p.then(res => res.json())));
+      console.log(res1, res2);
     }
 
     go();
+
+    async function getData(usernames) {
+      return Promise.all(
+        usernames.map(name => `https://api.github.com/users/${name}`)
+                 .map(url => fetch(url))
+                 .map(p => p.then(res => res.json()))
+      );
+    }
+
+    async function go2() {
+      const [wes, scott] = await getData(['wesbos', 'stolinski']);
+      console.log(wes, scott);
+    }
+
+    go2();
   </script>
 </body>
 
