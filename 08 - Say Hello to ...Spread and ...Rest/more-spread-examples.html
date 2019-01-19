@@ -11,8 +11,8 @@
     <p>Randy</p>
   </div>
 <script>
-  const people = Array.from(document.querySelectorAll('.people p'));
-  const names = people.map((person) => person.textContent );
+  const people = document.querySelectorAll('.people p');
+  const names = [...people].map(person => person.textContent);
 
   const deepDish = {
     pizzaName: 'Deep Dish',
@@ -34,6 +34,7 @@
 
   const newComments = [...comments.slice(0,commentIndex), ...comments.slice(commentIndex + 1)];
   console.log(newComments);
+  comments.splice(commentIndex, 1); // equivalent but mutates array insteaad of creating a new one
 
 </script>
 </body>
