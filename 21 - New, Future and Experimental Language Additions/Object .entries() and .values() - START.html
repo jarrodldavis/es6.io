@@ -15,8 +15,15 @@
     };
 
     // Make a nav for the inventory
+    const nav = Object.keys(inventory).map(item => `<li>${item}</li>`);
+    console.log(nav.join(''));
 
     // tell us how many values we have
+    const total = Object.values(inventory).reduce((sum, item) => sum + item);
+    console.log(total);
+
+    const list = Object.entries(inventory).map(([item, amount]) => `<li>${item} (${amount})</li>`).join('');
+    console.log(list);
   </script>
 </body>
 

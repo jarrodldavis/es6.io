@@ -7,10 +7,13 @@
 
 <body>
   <script>
-    const strings = ['short', 'medium size', 'this is really really long', 'this is really reall really really really really long'];
-    const longestString = strings.sort(str => str.length).map(str => str.length)[0];
+    const strings = ['this is really really long', 'short', 'medium size', 'this is really really really really really really long'];
+    const longestString = Math.max(...strings.map(str => str.length));
 
     strings.forEach(str => console.log(str.padStart(longestString)));
+
+    let padded = new Array(10).fill().map(() => Math.floor(Math.random() * 100)).map(num => num.toString().padStart(4, "#000"))
+    console.log(padded);
   </script>
 </body>
 
