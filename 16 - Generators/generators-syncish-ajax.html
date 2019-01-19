@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+  // interesting: this is how `async` functions work
 
   function ajax(url) {
     fetch(url).then(data => data.json()).then(data => dataGen.next(data))
